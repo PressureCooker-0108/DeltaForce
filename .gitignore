@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+node_modules/
+
+.streamlit/secrets.toml
+
+# Generated measurement exports
+astm_e562_*.pdf
+astm_e562_*.csv
+astm_e562_*.png
+
+.DS_Store
+Thumbs.db
+desktop.ini

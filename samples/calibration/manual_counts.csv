@@ -1,0 +1,10 @@
+image,manual_ferrite_percent
+# Add one row per calibration micrograph: image name, then the manual ASTM E562
+# point count recorded by a qualified operator.
+#
+# Rows whose image name starts with '#' are ignored, so this block is inert.
+#
+# Example:
+# 8265-27.jpg.jpeg,17.5
+# 8265-28.jpg.jpeg,16.0
+# 9852 (5).jpg.jpeg,46.0

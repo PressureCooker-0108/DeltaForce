@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aayodhyam | Delta Ferrite Preparation</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="node_modules/utif/UTIF.js"></script>
+  <script src="node_modules/exifr/dist/lite.umd.js"></script>
+  <script async src="node_modules/@techstark/opencv-js/dist/opencv.js"></script>
+</head>
+<body>
+  <header>
+    <div><p class="eyebrow">ASTM E562 · PHASE 1</p><h1>Image Preparation</h1></div>
+    <div id="engine-status" class="status loading">Initializing OpenCV…</div>
+  </header>
+  <main>
+    <aside class="sidebar">
+      <button id="open-button" class="primary">Open Micrograph</button>
+      <section class="panel"><h2>Image metadata</h2><div id="metadata" class="metadata empty">No image loaded</div></section>
+      <section class="panel controls"><h2>CLAHE</h2>
+        <label>Clip limit <output id="clip-output">2.0</output><input id="clip-limit" type="range" min="0.5" max="8" value="2" step="0.1" /></label>
+        <label>Tile size <output id="tile-output">8</output><input id="tile-size" type="range" min="2" max="32" value="8" step="1" /></label>
+      </section>
+      <section class="panel controls"><h2>Bilateral filter</h2>
+        <label>Diameter <output id="diameter-output">5</output><input id="diameter" type="range" min="1" max="15" value="5" step="2" /></label>
+        <label>Sigma color <output id="sigma-color-output">50</output><input id="sigma-color" type="range" min="1" max="150" value="50" step="1" /></label>
+        <label>Sigma space <output id="sigma-space-output">50</output><input id="sigma-space" type="range" min="1" max="150" value="50" step="1" /></label>
+      </section>
+      <button id="save-button" class="secondary" disabled>Save Enhanced Image</button>
+      <p class="note">Full resolution is retained. Images are never cropped, resized, or border-removed.</p>
+    </aside>
+    <section class="workspace">
+      <nav class="tabs" aria-label="Image views">
+        <button data-tab="original" class="active">Original</button><button data-tab="enhanced">Enhanced</button><button data-tab="compare">Side-by-Side</button>
+      </nav>
+      <div id="empty-state"><strong>Load a metallographic micrograph</strong><span>PNG, JPEG, TIFF, or BMP · original dimensions preserved</span></div>
+      <div id="views" hidden>
+        <div id="original-view" class="view"><figure><figcaption>Original <span id="original-size"></span></figcaption><canvas id="original-canvas"></canvas></figure></div>
+        <div id="enhanced-view" class="view" hidden><figure><figcaption>Enhanced <span id="enhanced-size"></span></figcaption><canvas id="enhanced-canvas"></canvas></figure></div>
+        <div id="compare-view" class="view comparison" hidden>
+          <figure><figcaption>Original</figcaption><canvas id="compare-original"></canvas></figure>
+          <figure><figcaption>Enhanced</figcaption><canvas id="compare-enhanced"></canvas></figure>
+        </div>
+      </div>
+      <div id="busy" hidden>Applying LAB CLAHE and bilateral filter…</div>
+    </section>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>
